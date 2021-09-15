@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.moshi.Moshi
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,28 +23,23 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun loadUsers(): List<User> {
-        return listOf (
-            User(
-                avatarUrl = "",
-                userName = "Kil de rial",
-                groupName = "Школа колбасы"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "Jorik",
-                groupName = "Школа колбасы"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "Den4ik",
-                groupName = "Школа колбасы"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "Dan4ik",
-                groupName = "Школа колбасы"
-            ),
-                )
+
     }
 
+    private fun provideApi(): Api {
+        return Retrofit.Builder()
+            .client(provideOkHttpClient())
+            .baseUrl("https://reqres.in/api/")
+            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
+            .build()
+            .create(Api::class.java)
+    }
+
+    private fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder().build()
+    }
+
+    private fun provideMoshi(): Moshi {
+        return Moshi.Builder().build()
+    }
 }
