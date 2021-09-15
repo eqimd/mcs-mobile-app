@@ -2,44 +2,43 @@ package com.daniillyubaev.ourawesomeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.moshi.Moshi
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.daniillyubaev.ourawesomeapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
+    val viewModel: MainViewModel by viewModels()
+    private val viewBinding by viewBinding(ActivityMainBinding::bind)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val adapter = setupRecyclerView()
+
+        findViewById<View>(R.id.usersRecyclerView).isVisible = false
+        findViewById<View>(R.id.progressBar).isVisible = true
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.userList = loadUsers()
+                adapter.notifyDataSetChanged()
+                findViewById<View>(R.id.usersRecyclerView).isVisible = true
+                findViewById<View>(R.id.progressBar).isVisible = false
+            }
+        }
+    }
+
+    private fun setupRecyclerView(): UserAdapter {
         val recyclerView = findViewById<RecyclerView>(R.id.usersRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(
-            this, LinearLayoutManager.VERTICAL, false)
         val adapter = UserAdapter()
         recyclerView.adapter = adapter
-        adapter.userList = loadUsers()
-        adapter.notifyDataSetChanged()
+        return adapter
     }
 
-    private fun loadUsers(): List<User> {
-
-    }
-
-    private fun provideApi(): Api {
-        return Retrofit.Builder()
-            .client(provideOkHttpClient())
-            .baseUrl("https://reqres.in/api/")
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
-            .build()
-            .create(Api::class.java)
-    }
-
-    private fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().build()
-    }
-
-    private fun provideMoshi(): Moshi {
-        return Moshi.Builder().build()
-    }
 }

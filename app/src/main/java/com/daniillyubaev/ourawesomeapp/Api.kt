@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface Api {
 
-    @GET("users")
+    @GET("users?per_page=10")
     suspend fun getUsers(): GetUsersResponse
 }
 
