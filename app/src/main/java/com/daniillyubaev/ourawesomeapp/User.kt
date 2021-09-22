@@ -1,7 +1,11 @@
 package com.daniillyubaev.ourawesomeapp
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class User(
-    val avatarUrl: String, // For example: "https://domain.com/user_1_avatar.png
-    val userName: String,
-    val groupName: String
+    @Json(name = "avatar") val avatarUrl: String, // For example: "https://domain.com/user_1_avatar.png
+    @Json(name = "first_name") val userName: String,
+    @Json(name = "email") val groupName: String
 )
