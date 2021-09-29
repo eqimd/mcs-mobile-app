@@ -2,6 +2,7 @@ package com.daniillyubaev.ourawesomeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -18,5 +19,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     companion object {
         val LOG_TAG = "MyAwesomeLogTag"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
     }
 }

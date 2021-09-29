@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Our Awesome App</string>
+    <string name="app_name">First Android App</string>
+    <string name="onboarding_view_pager_text_1">Вейк ми ап</string>
+    <string name="onboarding_view_pager_text_2">Вейк ми ап инсааайд</string>
+    <string name="onboarding_view_pager_text_3">Сэээйв мииии</string>
+    <string name="onboarding_sign_in_button_text">Войти</string>
+    <string name="onboarding_sign_up_button_text">Зарегистрироваться</string>
 </resources>
