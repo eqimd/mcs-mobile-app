@@ -1,19 +1,19 @@
-package com.daniillyubaev.ourawesomeapp
+package com.daniillyubaev.ourawesomeapp.ui.userlist
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
+import com.daniillyubaev.ourawesomeapp.ui.MainViewModel
+import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentUserlistBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class UserListFragment : Fragment(R.layout.fragment_userlist) {
+class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
 
     private lateinit var viewModel: MainViewModel
     private val viewBinding by viewBinding(FragmentUserlistBinding::bind)

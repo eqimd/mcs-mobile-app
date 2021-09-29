@@ -1,12 +1,14 @@
-package com.daniillyubaev.ourawesomeapp
+package com.daniillyubaev.ourawesomeapp.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
+import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentOnboardingBinding
+import com.daniillyubaev.ourawesomeapp.onboardingTextAdapterDelegate
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -15,7 +17,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
-class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
+class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
     private var player: ExoPlayer? = null

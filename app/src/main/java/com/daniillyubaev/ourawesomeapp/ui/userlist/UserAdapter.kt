@@ -1,4 +1,4 @@
-package com.daniillyubaev.ourawesomeapp
+package com.daniillyubaev.ourawesomeapp.ui.userlist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.daniillyubaev.ourawesomeapp.R
+import com.daniillyubaev.ourawesomeapp.entity.User
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
