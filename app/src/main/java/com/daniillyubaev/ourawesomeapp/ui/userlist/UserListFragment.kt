@@ -2,32 +2,33 @@ package com.daniillyubaev.ourawesomeapp.ui.userlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
-import com.daniillyubaev.ourawesomeapp.ui.MainViewModel
 import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentUserlistBinding
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
 class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: UserListViewModel
     private val viewBinding by viewBinding(FragmentUserlistBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.viewState.collect { viewState ->
                     renderViewState(viewState)
                 }
@@ -42,13 +43,13 @@ class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
         return adapter
     }
 
-    private fun renderViewState(viewState: MainViewModel.ViewState) {
+    private fun renderViewState(viewState: UserListViewModel.ViewState) {
         when (viewState) {
-            is MainViewModel.ViewState.Loading -> {
+            is UserListViewModel.ViewState.Loading -> {
                 viewBinding.usersRecyclerView.isVisible = false
                 viewBinding.progressBar.isVisible = true
             }
-            is MainViewModel.ViewState.Data -> {
+            is UserListViewModel.ViewState.Data -> {
                 viewBinding.usersRecyclerView.isVisible = true
                 (viewBinding.usersRecyclerView.adapter as UserAdapter).apply{
                     userList = viewState.userList

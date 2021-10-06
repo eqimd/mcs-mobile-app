@@ -22,6 +22,8 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
     private var player: ExoPlayer? = null
 
+    private var isVolume: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         player = SimpleExoPlayer.Builder(requireContext()).build().apply {
@@ -44,6 +46,22 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         viewBinding.signUpButton.setOnClickListener {
             // TODO: sign up navigation (SignUpFragment)
             Toast.makeText(requireContext(), "Нажата кнопка зарегистрироваться", Toast.LENGTH_SHORT).show()
+        }
+        player?.volume = 0F
+        viewBinding.volumeControlButton.setOnClickListener {
+            changeVolume()
+        }
+    }
+
+    fun changeVolume() {
+        if (isVolume) {
+            player?.volume = 0F
+            isVolume = false
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
+        } else {
+            player?.volume = 1F
+            isVolume = true
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_up_white_24dp)
         }
     }
 

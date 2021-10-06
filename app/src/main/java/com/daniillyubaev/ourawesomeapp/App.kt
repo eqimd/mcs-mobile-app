@@ -1,5 +1,6 @@
+package com.daniillyubaev.ourawesomeapp
+
 import android.app.Application
-import com.daniillyubaev.ourawesomeapp.BuildConfig
 import timber.log.Timber
 
 class App : Application() {
