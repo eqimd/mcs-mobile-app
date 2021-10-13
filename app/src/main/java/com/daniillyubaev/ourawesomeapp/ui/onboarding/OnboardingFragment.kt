@@ -49,19 +49,32 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         }
         player?.volume = 0F
         viewBinding.volumeControlButton.setOnClickListener {
-            changeVolume()
+            changeVolume(!isVolume)
         }
     }
 
-    fun changeVolume() {
-        if (isVolume) {
-            player?.volume = 0F
-            isVolume = false
-            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
-        } else {
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean("isVolume", isVolume)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        isVolume = savedInstanceState?.getBoolean("isVolume") ?: false
+        changeVolume(isVolume)
+    }
+
+    private fun changeVolume(setVolumeOn: Boolean) {
+        if (setVolumeOn) {
             player?.volume = 1F
             isVolume = true
             viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_up_white_24dp)
+        } else {
+            player?.volume = 0F
+            isVolume = false
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
         }
     }
 
