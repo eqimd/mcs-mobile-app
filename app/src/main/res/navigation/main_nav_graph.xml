@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/guest_nav_graph">
+    app:startDestination="@+id/guest_nav_graph">
 
     <action
         android:id="@+id/action_guestNavGraph"
@@ -11,7 +11,7 @@
         app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_RegisteredUserNavGraph"
+        android:id="@+id/action_registeredUserNavGraph"
         app:destination="@+id/registered_user_nav_graph"
         app:popUpTo="@+id/main_nav_graph"
         app:popUpToInclusive="true" />

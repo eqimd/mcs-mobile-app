@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import com.daniillyubaev.ourawesomeapp.R
-import com.daniillyubaev.ourawesomeapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 if (navController.backQueue.any { it.destination.id == R.id.registered_user_nav_graph}) {
                     return
                 }
-                navController.navigate(R.id.action_RegisteredUserNavGraph)
+                navController.navigate(R.id.action_registeredUserNavGraph)
             }
             false -> {
                 if (navController.backQueue.any { it.destination.id == R.id.guest_nav_graph}) {

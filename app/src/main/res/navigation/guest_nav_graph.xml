@@ -12,7 +12,7 @@
             android:id="@+id/action_onboardingFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
         <action
-            android:id="@+id/action_onboardingFragment_to_signUpFragment2"
+            android:id="@+id/action_onboardingFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
 
@@ -34,5 +34,10 @@
         android:id="@+id/emailConfirmationFragment"
         android:name="com.daniillyubaev.ourawesomeapp.ui.emailconfirmation.EmailConfirmationFragment"
         android:label="EmailConfirmationFragment" />
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.daniillyubaev.ourawesomeapp.ui.userlist.UserListFragment"
+        android:label="UserListFragment" />
 
 </navigation>

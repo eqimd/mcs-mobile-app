@@ -7,5 +7,5 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:text="Bratan moment 1337">
+    tools:text="onboarding text">
 </TextView>
