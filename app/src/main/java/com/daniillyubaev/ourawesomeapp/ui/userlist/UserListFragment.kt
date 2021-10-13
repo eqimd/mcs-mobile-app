@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
 import com.daniillyubaev.ourawesomeapp.R
@@ -40,6 +41,7 @@ class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
         val recyclerView = viewBinding.usersRecyclerView
         val adapter = UserAdapter()
         recyclerView.adapter = adapter
+        viewBinding.usersRecyclerView.addItemDecoration((DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)))
         return adapter
     }
 
