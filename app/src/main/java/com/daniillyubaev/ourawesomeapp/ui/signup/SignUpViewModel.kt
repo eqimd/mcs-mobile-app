@@ -1,6 +1,7 @@
 package com.daniillyubaev.ourawesomeapp.ui.signup
 
 import androidx.lifecycle.viewModelScope
+import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.repository.AuthRepository
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch

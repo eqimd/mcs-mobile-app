@@ -1,5 +1,6 @@
 package com.daniillyubaev.ourawesomeapp.repository
 
+import com.daniillyubaev.ourawesomeapp.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -24,6 +25,5 @@ object AuthRepository {
         password: String
     ) {
         //TODO: Get API response for email availability, change screen to email confirm
-        _isAuthorizedFlow.emit(true)
     }
 }
