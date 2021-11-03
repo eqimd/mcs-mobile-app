@@ -17,7 +17,7 @@
     <string name="sign_in_email_text_layout_hint">Почта</string>
     <string name="sign_in_password_text_layout_hint">Пароль</string>
 
-    <string name="sign_in_back_alert_dialog_text">не надо братишка</string>
+    <string name="sign_in_back_alert_dialog_text">Введенные данные пропадут</string>
     <string name="sign_in_back_alert_dialog_cancel_button_text">Нет</string>
     <string name="sign_in_back_alert_dialog_ok_button_text">Да</string>
 
