@@ -1,8 +1,8 @@
 package com.daniillyubaev.ourawesomeapp.ui.userlist
 
 import androidx.lifecycle.viewModelScope
-import androidx.viewbinding.BuildConfig
 import com.daniillyubaev.ourawesomeapp.Api
+import com.daniillyubaev.ourawesomeapp.BuildConfig
 import com.daniillyubaev.ourawesomeapp.data.network.MockApi
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
 import com.daniillyubaev.ourawesomeapp.entity.User

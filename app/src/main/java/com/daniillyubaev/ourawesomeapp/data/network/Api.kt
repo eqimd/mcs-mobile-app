@@ -6,6 +6,7 @@ import com.daniillyubaev.ourawesomeapp.data.network.request.SignInWithEmailReque
 import com.daniillyubaev.ourawesomeapp.data.network.response.VerificationTokenResponse
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.*
 import com.daniillyubaev.ourawesomeapp.entity.AuthTokens
+import com.daniillyubaev.ourawesomeapp.entity.Post
 import com.daniillyubaev.ourawesomeapp.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.squareup.moshi.Json
@@ -43,6 +44,9 @@ interface Api {
     suspend fun createProfile(
         @Body request: CreateProfileRequest
     ): NetworkResponse<AuthTokens, CreateProfileErrorResponse>
+
+    @POST("posts")
+    suspend fun getPosts(): NetworkResponse<List<Post>, Unit>
 }
 
 @JsonClass(generateAdapter = true)

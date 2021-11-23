@@ -8,18 +8,24 @@ import com.daniillyubaev.ourawesomeapp.data.network.response.error.CreateProfile
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.RefreshAuthTokensErrorResponse
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.SignInWithEmailErrorResponse
 import com.daniillyubaev.ourawesomeapp.data.persistent.LocalKeyValueStorage
+import com.daniillyubaev.ourawesomeapp.di.module.AppCoroutineScope
+import com.daniillyubaev.ourawesomeapp.di.module.IoCoroutineDispatcher
 import com.daniillyubaev.ourawesomeapp.entity.AuthTokens
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import timber.log.Timber
+import javax.inject.Inject
+import dagger.Lazy
 
-class AuthRepository constructor(
-    private val api: Api,
+class AuthRepository @Inject constructor(
+    private val apiLazy: Lazy<Api>,
     private val localKeyValueStorage: LocalKeyValueStorage,
-    externalCoroutineScope: CoroutineScope,
-    private val ioDispatcher: CoroutineDispatcher
+    @AppCoroutineScope externalCoroutineScope: CoroutineScope,
+    @IoCoroutineDispatcher private val ioDispatcher: CoroutineDispatcher
+
 ) {
+    private val api by lazy { apiLazy.get() }
 
     private val authTokensFlow: Deferred<MutableStateFlow<AuthTokens?>> =
         externalCoroutineScope.async(context = ioDispatcher, start = CoroutineStart.LAZY) {
@@ -52,7 +58,7 @@ class AuthRepository constructor(
         return authTokensFlow
             .await()
             .asStateFlow()
-            .map {it != null }
+            .map { it != null }
     }
 
     suspend fun generateAuthTokensByEmail(

@@ -6,9 +6,10 @@ import com.daniillyubaev.ourawesomeapp.repository.AuthRepository
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
+import javax.inject.Inject
 
-class AuthInteractor constructor(
-    private val authRepository: AuthRepository
+class AuthInteractor @Inject constructor(
+    private val authRepository: AuthRepository,
 ) {
 
     suspend fun isAuthorized(): Flow<Boolean> =

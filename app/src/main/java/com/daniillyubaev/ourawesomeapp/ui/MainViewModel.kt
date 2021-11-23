@@ -1,9 +1,16 @@
 package com.daniillyubaev.ourawesomeapp.ui
 
-import com.daniillyubaev.ourawesomeapp.repository.AuthRepositoryOld
+import com.daniillyubaev.ourawesomeapp.interactor.AuthInteractor
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MainViewModel : BaseViewModel() {
-    val isAuthorizedFlow: Flow<Boolean> = AuthRepositoryOld.isAuthorizedFlow
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val authInteractor: AuthInteractor
+) : BaseViewModel() {
+
+    suspend fun isAuthorizedFlow(): Flow<Boolean> =
+        authInteractor.isAuthorized()
 }
