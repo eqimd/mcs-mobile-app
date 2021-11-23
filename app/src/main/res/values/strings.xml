@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Our Awesome App</string>
+    <string name="app_name">First Android App</string>
+    <string name="onboarding_view_pager_text_1">We love Android!</string>
+    <string name="onboarding_view_pager_text_2">Осень 2021, МКН СПбГУ</string>
+    <string name="onboarding_view_pager_text_3">я работаю за еду</string>
+    <string name="onboarding_sign_in_button_text">Войти</string>
+    <string name="onboarding_sign_up_button_text">Зарегистрироваться</string>
+
+    <string name="bottom_navigation_title_home">Лента</string>
+    <string name="bottom_navigation_title_users">Люди</string>
+    <string name="bottom_navigation_title_likes">Лайки</string>
+    <string name="bottom_navigation_title_bookmarks">Закладки</string>
+    <string name="bottom_navigation_title_profile">Профиль</string>
+
+    <string name="sign_in_sign_in_button_text">Войти</string>
 </resources>

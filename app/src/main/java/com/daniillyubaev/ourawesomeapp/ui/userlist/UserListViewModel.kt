@@ -1,9 +1,10 @@
-package com.daniillyubaev.ourawesomeapp
+package com.daniillyubaev.ourawesomeapp.ui.userlist
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.daniillyubaev.ourawesomeapp.MainActivity.Companion.LOG_TAG
+import com.daniillyubaev.ourawesomeapp.Api
+import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
+import com.daniillyubaev.ourawesomeapp.entity.User
+import com.google.android.exoplayer2.util.Log
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,10 +16,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class MainViewModel : ViewModel() {
-
+class UserListViewModel : BaseViewModel() {
+    sealed class ViewState {
+        object Loading : ViewState()
+        data class Data(val userList: List<User>) : ViewState()
+    }
     private val _viewState = MutableStateFlow<ViewState>(ViewState.Loading)
-
     val viewState: Flow<ViewState> get() = _viewState.asStateFlow()
 
     init {
@@ -29,10 +32,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private suspend fun loadUsers(): List<User> {
+    private suspend fun loadUsers() : List<User> {
         return withContext(Dispatchers.IO) {
-            Log.d(LOG_TAG, "loadUsers()")
-            Thread.sleep(2999)
+            Thread.sleep(3000)
             provideApi().getUsers().data
         }
     }
@@ -52,10 +54,5 @@ class MainViewModel : ViewModel() {
 
     private fun provideMoshi(): Moshi {
         return Moshi.Builder().build()
-    }
-
-    sealed class ViewState {
-        object Loading : ViewState()
-        data class Data(val userList: List<User>) : ViewState()
     }
 }
