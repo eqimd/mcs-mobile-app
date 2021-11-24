@@ -8,6 +8,7 @@ import com.daniillyubaev.ourawesomeapp.data.network.request.SignInWithEmailReque
 import com.daniillyubaev.ourawesomeapp.data.network.response.VerificationTokenResponse
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.*
 import com.daniillyubaev.ourawesomeapp.entity.AuthTokens
+import com.daniillyubaev.ourawesomeapp.entity.Post
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi : Api {
@@ -44,6 +45,10 @@ class MockApi : Api {
     }
 
     override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPosts(): NetworkResponse<List<Post>, Unit> {
         TODO("Not yet implemented")
     }
 }

@@ -5,7 +5,6 @@ import com.daniillyubaev.ourawesomeapp.data.network.response.error.SignInWithEma
 import com.daniillyubaev.ourawesomeapp.interactor.AuthInteractor
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
 import com.haroldadmin.cnradapter.NetworkResponse
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

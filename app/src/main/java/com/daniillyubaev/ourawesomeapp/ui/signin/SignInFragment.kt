@@ -1,5 +1,7 @@
 package com.daniillyubaev.ourawesomeapp.ui.signin
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
@@ -32,6 +34,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        animateLogo()
         viewBinding.backButton.setOnClickListener {
             onBackButtonPressed()
         }
@@ -83,5 +86,14 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
 
     private fun decideSignInButtonEnabledState(email: String?, password: String?) {
         viewBinding.signInButton.isEnabled = (!email.isNullOrBlank() && !password.isNullOrBlank())
+    }
+
+    private fun animateLogo() {
+        ObjectAnimator.ofFloat(viewBinding.mknLogoImageView, "translationY", -20f, 20f).apply {
+            duration = 2000
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            start()
+        }
     }
 }
