@@ -1,7 +1,5 @@
 package com.daniillyubaev.ourawesomeapp.data.network
 
-import com.daniillyubaev.ourawesomeapp.Api
-import com.daniillyubaev.ourawesomeapp.GetUsersResponse
 import com.daniillyubaev.ourawesomeapp.data.network.request.CreateProfileRequest
 import com.daniillyubaev.ourawesomeapp.data.network.request.RefreshAuthTokensRequest
 import com.daniillyubaev.ourawesomeapp.data.network.request.SignInWithEmailRequest
@@ -9,11 +7,24 @@ import com.daniillyubaev.ourawesomeapp.data.network.response.VerificationTokenRe
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.*
 import com.daniillyubaev.ourawesomeapp.entity.AuthTokens
 import com.daniillyubaev.ourawesomeapp.entity.Post
+import com.daniillyubaev.ourawesomeapp.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi : Api {
-    override suspend fun getUsers(): GetUsersResponse {
-        TODO("Not yet implemented")
+    override suspend fun getUsers(): NetworkResponse<List<User>, Unit> {
+        return NetworkResponse.Success(
+            body = listOf(
+                User(
+                    id = 0,
+                    username = "c00l_k1tty",
+                    avatarUrl = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/9e/9e486624eac2dc00d96667516c8ad18e5d5a90d6_full.jpg",
+                    firstName = "Ki",
+                    lastName = "Tty",
+                    groupName = "testkitty"
+                )
+            ),
+            code = 200
+        )
     }
 
     override suspend fun signInWithEmail(request: SignInWithEmailRequest): NetworkResponse<AuthTokens, SignInWithEmailErrorResponse> {

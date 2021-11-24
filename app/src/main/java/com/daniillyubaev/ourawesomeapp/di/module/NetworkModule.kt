@@ -1,7 +1,7 @@
 package com.ruslankalbaev.ourawesomeapp.di.module
 
 import android.os.Build
-import com.daniillyubaev.ourawesomeapp.Api
+import com.daniillyubaev.ourawesomeapp.data.network.Api
 import com.daniillyubaev.ourawesomeapp.BuildConfig
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.daniillyubaev.ourawesomeapp.data.network.MockApi

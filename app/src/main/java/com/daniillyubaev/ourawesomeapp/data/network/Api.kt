@@ -1,4 +1,4 @@
-package com.daniillyubaev.ourawesomeapp
+package com.daniillyubaev.ourawesomeapp.data.network
 
 import com.daniillyubaev.ourawesomeapp.data.network.request.CreateProfileRequest
 import com.daniillyubaev.ourawesomeapp.data.network.request.RefreshAuthTokensRequest
@@ -9,14 +9,12 @@ import com.daniillyubaev.ourawesomeapp.entity.AuthTokens
 import com.daniillyubaev.ourawesomeapp.entity.Post
 import com.daniillyubaev.ourawesomeapp.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import retrofit2.http.*
 
 interface Api {
 
     @GET("users?per_page=10")
-    suspend fun getUsers(): GetUsersResponse
+    suspend fun getUsers(): NetworkResponse<List<User>, Unit>
 
     @POST("auth/sign-in-email")
     suspend fun signInWithEmail(
@@ -48,8 +46,3 @@ interface Api {
     @POST("posts")
     suspend fun getPosts(): NetworkResponse<List<Post>, Unit>
 }
-
-@JsonClass(generateAdapter = true)
-data class GetUsersResponse(
-    @Json(name = "data") val data: List<User>
-)

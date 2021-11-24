@@ -1,6 +1,6 @@
 package com.daniillyubaev.ourawesomeapp.repository
 
-import com.daniillyubaev.ourawesomeapp.Api
+import com.daniillyubaev.ourawesomeapp.data.network.Api
 import com.daniillyubaev.ourawesomeapp.data.network.request.CreateProfileRequest
 import com.daniillyubaev.ourawesomeapp.data.network.request.RefreshAuthTokensRequest
 import com.daniillyubaev.ourawesomeapp.data.network.request.SignInWithEmailRequest

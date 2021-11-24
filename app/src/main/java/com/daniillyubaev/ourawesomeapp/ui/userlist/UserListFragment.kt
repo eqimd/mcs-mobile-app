@@ -12,9 +12,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
 import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentUserlistBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
 
     private lateinit var viewModel: UserListViewModel
