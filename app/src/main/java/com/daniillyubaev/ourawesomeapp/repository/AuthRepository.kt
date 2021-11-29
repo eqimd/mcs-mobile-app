@@ -95,4 +95,14 @@ class AuthRepository @Inject constructor(
     suspend fun generateRefreshedAuthTokens(refreshToken: String): NetworkResponse<AuthTokens, RefreshAuthTokensErrorResponse> {
         return api.refreshAuthTokens(RefreshAuthTokensRequest(refreshToken))
     }
+
+    suspend fun signUp(
+        firstname: String,
+        lastname: String,
+        nickname: String,
+        email: String,
+        password: String
+    ) {
+        //TODO: Get API response for email availability, change screen to email confirm
+    }
 }
