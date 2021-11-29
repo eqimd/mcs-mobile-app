@@ -24,9 +24,11 @@ import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
 import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentSignUpBinding
 import com.daniillyubaev.ourawesomeapp.util.getSpannedString
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
     private val viewModel: SignUpViewModel by viewModels()
     private val viewBinding by viewBinding(FragmentSignUpBinding::bind)
@@ -50,11 +52,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
         }
         viewBinding.signUpButton.setOnClickListener {
             viewModel.signUp(
-                firstname = viewBinding.firstnameEditText.text?.toString() ?: "",
-                lastname = viewBinding.lastnameEditText.text?.toString() ?: "",
-                nickname = viewBinding.nicknameEditText.text?.toString() ?: "",
                 email = viewBinding.emailEditText.text?.toString() ?: "",
-                password = viewBinding.passwordEditText.text?.toString() ?: ""
             )
         }
         viewBinding.termsAndConditionsCheckBox.setClubRulesText {
@@ -62,6 +60,22 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
         }
         subscribeToEvents()
         subscribeToFormFields()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val firstname = viewBinding.firstnameEditText.text?.toString() ?: ""
+        val lastname = viewBinding.lastnameEditText.text?.toString() ?: ""
+        val nickname = viewBinding.nicknameEditText.text?.toString() ?: ""
+        val password = viewBinding.passwordEditText.text?.toString() ?: ""
+        val email = viewBinding.emailEditText.text?.toString() ?: ""
+
+        outState.putString("SIGN_UP_FIRSTNAME", firstname)
+        outState.putString("SIGN_UP_LASTNAME", lastname)
+        outState.putString("SIGN_UP_NICKNAME", nickname)
+        outState.putString("SIGN_UP_PASSWORD", password)
+        outState.putString("SIGN_UP_EMAIL", email)
     }
 
     private fun subscribeToFormFields() {
@@ -110,9 +124,9 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
     private fun subscribeToEvents() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.eventsFlow().collect { event ->
-                    when (event) {
-                        is SignUpViewModel.Event.SignUpEmailConfirmationRequired -> {
+                viewModel.signUpActionStateFlow().collect { action ->
+                    when (action) {
+                        is SignUpViewModel.SignUpActionState.EmailConfirmationRequired -> {
                             findNavController().navigate(R.id.emailConfirmationFragment)
                         }
                         else -> {
