@@ -29,7 +29,7 @@ class UserListViewModel @Inject constructor(
         loadUsers()
     }
 
-    private fun loadUsers() {
+    internal fun loadUsers() {
         viewModelScope.launch {
             _viewState.emit(ViewState.Loading)
             when (val response = usersInteractor.loadUsers()) {
