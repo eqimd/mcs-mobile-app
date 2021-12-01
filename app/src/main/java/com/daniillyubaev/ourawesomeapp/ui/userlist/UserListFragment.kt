@@ -39,7 +39,6 @@ class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
         }
         viewBinding.refreshLayout.setOnRefreshListener {
             viewModel.loadUsers()
-            // Не работает чета
         }
     }
 
