@@ -1,9 +1,8 @@
 package com.daniillyubaev.ourawesomeapp.ui.emailconfirmation
 
-
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -30,16 +29,24 @@ class EmailConfirmationFragment : BaseFragment(R.layout.fragment_email_confirmat
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
         viewBinding.confirmVerificationCodeButton.setOnClickListener {
             viewModel.confirmVerificationCode(
                 code = viewBinding.verificationCodeEditText.getCode()
             )
         }
+        viewBinding.confirmVerificationCodeButton.isEnabled = false
         viewBinding.verificationCodeEditText.onVerificationCodeFilledChangeListener = {
             viewBinding.confirmVerificationCodeButton.isEnabled = it
         }
+
+//        AlertDialog.Builder(requireContext())
+//            .setTitle(viewModel.firstname)
+//            .setNegativeButton(R.string.sign_in_back_alert_dialog_cancel_button_text) { dialog, _ ->
+//                dialog?.dismiss()
+//            }
+//            .setPositiveButton(R.string.sign_in_back_alert_dialog_ok_button_text) { _, _ ->
+//                findNavController().popBackStack()
+//            }
+//            .show()
     }
 }
