@@ -15,10 +15,10 @@ class VerificationCodeEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
+    defStyleRes: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val verificationCodeLength = 6
+    private val verificationCodeSlots = 6
 
     private val viewBinding =
         ViewVerificationCodeEditTextBinding.inflate(LayoutInflater.from(context), this)
@@ -33,7 +33,7 @@ class VerificationCodeEditText @JvmOverloads constructor(
             viewBinding.slot6
         )
 
-    private val slotValues: Array<CharSequence?> = Array(verificationCodeLength) { null }
+    private val slotValues: Array<CharSequence?> = Array(verificationCodeSlots) { null }
 
     var onVerificationCodeFilledListener: (String) -> Unit = {}
 

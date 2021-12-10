@@ -7,14 +7,14 @@
         android:name=".App"
         android:allowBackup="true"
         android:fullBackupOnly="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_custom"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_custom_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurAwesomeApp">
         <activity
             android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="stateUnchanged|adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
