@@ -8,8 +8,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.ViewVerificationCodeEditTextBinding
 import java.lang.Math.min
+import kotlin.properties.Delegates
 
 class VerificationCodeEditText @JvmOverloads constructor(
     context: Context,
@@ -18,28 +20,36 @@ class VerificationCodeEditText @JvmOverloads constructor(
     defStyleRes: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val verificationCodeSlots = 6
+    private var slotsNumber by Delegates.notNull<Int>()
 
     private val viewBinding =
         ViewVerificationCodeEditTextBinding.inflate(LayoutInflater.from(context), this)
 
-    private val slotViews: List<VerificationCodeSlotView> =
-        listOf(
-            viewBinding.slot1,
-            viewBinding.slot2,
-            viewBinding.slot3,
-            viewBinding.slot4,
-            viewBinding.slot5,
-            viewBinding.slot6
-        )
+    private val slotViews: MutableList<VerificationCodeSlotView> = mutableListOf()
 
-    private val slotValues: Array<CharSequence?> = Array(verificationCodeSlots) { null }
+    private lateinit var slotValues: Array<CharSequence?>
 
     var onVerificationCodeFilledListener: (String) -> Unit = {}
 
     var onVerificationCodeFilledChangeListener: (Boolean) -> Unit = {}
 
     init {
+        context.obtainStyledAttributes(attrs, R.styleable.VerificationCodeEditText , defStyleAttr, defStyleRes).apply {
+            slotsNumber = getInt(R.styleable.VerificationCodeEditText_slotsNumber, 4)
+        }
+        val linearLayout = viewBinding.codeEditContainer
+        for (i in 0 until slotsNumber) {
+            LayoutInflater.from(context).inflate(
+                R.layout.view_verification_code_linear_layout_element, linearLayout
+            )
+        }
+        slotViews.apply {
+            for (i in 0 until slotsNumber) {
+                this.add(linearLayout.getChildAt(i) as VerificationCodeSlotView)
+            }
+        }
+        slotValues = Array(slotsNumber) { null }
+
         viewBinding.realVerificationCodeEditText.addTextChangedListener(
 
             object : TextWatcher {
