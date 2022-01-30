@@ -64,7 +64,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            outputFileName = "kalbaev-${variant.versionName}-${variant.buildType.name}.apk"
+            outputFileName = "daniil-lyubaev-${variant.versionName}-${variant.buildType.name}.apk"
         }
     }
 }
@@ -138,4 +138,6 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    implementation "dev.chrisbanes.insetter:insetter:0.6.0"
 }
