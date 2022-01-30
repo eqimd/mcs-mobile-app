@@ -1,4 +1,4 @@
-package com.ruslankalbaev.ourawesomeapp.di.module
+package com.daniillyubaev.ourawesomeapp.di.module
 
 import android.os.Build
 import com.daniillyubaev.ourawesomeapp.data.network.Api
@@ -7,6 +7,7 @@ import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.daniillyubaev.ourawesomeapp.data.network.MockApi
 import com.daniillyubaev.ourawesomeapp.data.network.interceptor.AuthorizationInterceptor
 import com.daniillyubaev.ourawesomeapp.data.network.interceptor.OurAwesomeAppAuthenticator
+import com.daniillyubaev.ourawesomeapp.data.network.interceptor.UserAgentInterceptor
 import com.daniillyubaev.ourawesomeapp.repository.AuthRepository
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -44,7 +45,7 @@ object NetworkModule {
             .apply {
                 readTimeout(60, TimeUnit.SECONDS)
                 connectTimeout(60, TimeUnit.SECONDS)
-//                addNetworkInterceptor(UserAgentInterceptor(userAgent))
+                addNetworkInterceptor(UserAgentInterceptor(userAgent))
                 addNetworkInterceptor(AuthorizationInterceptor(authRepository))
                 authenticator(OurAwesomeAppAuthenticator(authRepository))
                 if (BuildConfig.DEBUG) {

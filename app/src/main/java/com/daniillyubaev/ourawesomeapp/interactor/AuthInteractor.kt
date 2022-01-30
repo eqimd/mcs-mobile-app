@@ -1,5 +1,6 @@
 package com.daniillyubaev.ourawesomeapp.interactor
 
+import android.util.Log
 import com.daniillyubaev.ourawesomeapp.data.network.request.CreateProfileRequest
 import com.daniillyubaev.ourawesomeapp.data.network.response.VerificationTokenResponse
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.CreateProfileErrorResponse
@@ -37,9 +38,19 @@ class AuthInteractor @Inject constructor(
     }
 
     suspend fun signUp(
+        username: String,
+        firstname: String,
+        lastname: String,
         email: String,
-    ): NetworkResponse<Unit, SendRegistrationVerificationCodeErrorResponse> {
-        val response = authRepository.sendRegistrationVerificationCodeRequest(email)
+        password: String
+    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+        val response = authRepository.createProfile(
+            username = username,
+            firstname = firstname,
+            lastname = lastname,
+            email = email,
+            password = password
+        )
         when (response) {
             is NetworkResponse.Error -> {
                 Timber.e(response.error)

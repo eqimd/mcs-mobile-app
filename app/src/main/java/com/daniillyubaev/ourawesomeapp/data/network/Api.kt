@@ -13,10 +13,10 @@ import retrofit2.http.*
 
 interface Api {
 
-    @GET("users?per_page=10")
+    @GET("users")
     suspend fun getUsers(): NetworkResponse<List<User>, Unit>
 
-    @POST("auth/sign-in-email")
+    @POST("auth/sign-in-with-email")
     suspend fun signInWithEmail(
         @Body request: SignInWithEmailRequest
     ): NetworkResponse<AuthTokens, SignInWithEmailErrorResponse>
@@ -38,7 +38,7 @@ interface Api {
         @Query("phone_number") phoneNumber: String?
     ): NetworkResponse<VerificationTokenResponse, VerifyRegistrationCodeErrorResponse>
 
-    @PUT("registration/create-profile")
+    @POST("registration/create-profile")
     suspend fun createProfile(
         @Body request: CreateProfileRequest
     ): NetworkResponse<AuthTokens, CreateProfileErrorResponse>

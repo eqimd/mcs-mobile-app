@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "Boolean", "USE_MOCK_BACKEND_API", 'false'
-        buildConfigField "String", "BACKEND_API_URL", '""'
+        buildConfigField "String", "BACKEND_API_URL", ""
     }
 
     buildTypes {
@@ -44,7 +44,7 @@ android {
             dimension "deployment-environment"
             applicationIdSuffix ".dev"
             versionNameSuffix ".dev"
-            buildConfigField "String", "BACKEND_API_URL", '""'
+            buildConfigField "String", "BACKEND_API_URL", "\"https://android-course-backend.herokuapp.com/\""
         }
         stage {
             dimension "deployment-environment"

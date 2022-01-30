@@ -24,7 +24,6 @@ class AuthRepository @Inject constructor(
     private val localKeyValueStorage: LocalKeyValueStorage,
     @AppCoroutineScope externalCoroutineScope: CoroutineScope,
     @IoCoroutineDispatcher private val ioDispatcher: CoroutineDispatcher
-
 ) {
     private val api by lazy { apiLazy.get() }
 
@@ -99,6 +98,24 @@ class AuthRepository @Inject constructor(
         email: String,
     ): NetworkResponse<Unit, SendRegistrationVerificationCodeErrorResponse> {
         return api.sendRegistrationVerificationCode(email)
+    }
+
+    suspend fun createProfile(
+        username: String,
+        firstname: String,
+        lastname: String,
+        email: String,
+        password: String
+    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+        return api.createProfile(
+            CreateProfileRequest(
+                username = username,
+                firstname = firstname,
+                lastname = lastname,
+                email = email,
+                password = password
+            )
+        )
     }
 
     suspend fun verifyRegistrationCode(

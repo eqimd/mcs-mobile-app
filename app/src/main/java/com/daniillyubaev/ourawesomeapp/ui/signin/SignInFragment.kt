@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
@@ -14,6 +15,7 @@ import com.daniillyubaev.ourawesomeapp.ui.base.BaseFragment
 import com.daniillyubaev.ourawesomeapp.R
 import com.daniillyubaev.ourawesomeapp.databinding.FragmentSignInBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {

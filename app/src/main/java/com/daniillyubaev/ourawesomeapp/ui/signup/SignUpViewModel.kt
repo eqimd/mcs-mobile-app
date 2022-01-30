@@ -1,6 +1,7 @@
 package com.daniillyubaev.ourawesomeapp.ui.signup
 
 import androidx.lifecycle.viewModelScope
+import com.daniillyubaev.ourawesomeapp.data.network.response.error.CreateProfileErrorResponse
 import com.daniillyubaev.ourawesomeapp.data.network.response.error.SendRegistrationVerificationCodeErrorResponse
 import com.daniillyubaev.ourawesomeapp.interactor.AuthInteractor
 import com.daniillyubaev.ourawesomeapp.ui.base.BaseViewModel
@@ -27,13 +28,21 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun signUp(
+        username: String,
+        firstname: String,
+        lastname: String,
         email: String,
+        password: String
     ) {
         viewModelScope.launch {
             _signUpActionStateFlow.emit(SignUpActionState.Loading)
             try {
                 when (val response = authInteractor.signUp(
+                    username = username,
+                    firstname = firstname,
+                    lastname = lastname,
                     email = email,
+                    password = password
                 )) {
                     is NetworkResponse.Success -> {
                         _signUpActionStateFlow.emit(SignUpActionState.EmailConfirmationRequired)
@@ -67,7 +76,7 @@ class SignUpViewModel @Inject constructor(
         object Loading : SignUpActionState()
         object EmailConfirmationRequired : SignUpActionState()
 
-        data class ServerError(val e: NetworkResponse.ServerError<SendRegistrationVerificationCodeErrorResponse>) : SignUpActionState()
+        data class ServerError(val e: NetworkResponse.ServerError<CreateProfileErrorResponse>) : SignUpActionState()
         data class NetworkError(val e: NetworkResponse.NetworkError) : SignUpActionState()
         data class UnknownError(val e: NetworkResponse.UnknownError) : SignUpActionState()
     }

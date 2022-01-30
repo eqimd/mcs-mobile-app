@@ -1,7 +1,7 @@
 package com.daniillyubaev.ourawesomeapp
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
+import com.daniillyubaev.ourawesomeapp.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 

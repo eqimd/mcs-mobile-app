@@ -51,8 +51,18 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
             onBackButtonPressed()
         }
         viewBinding.signUpButton.setOnClickListener {
+            val firstname = viewBinding.firstnameEditText.text?.toString() ?: ""
+            val lastname = viewBinding.lastnameEditText.text?.toString() ?: ""
+            val username = viewBinding.nicknameEditText.text?.toString() ?: ""
+            val password = viewBinding.passwordEditText.text?.toString() ?: ""
+            val email = viewBinding.emailEditText.text?.toString() ?: ""
+
             viewModel.signUp(
-                email = viewBinding.emailEditText.text?.toString() ?: "",
+                username = username,
+                firstname = firstname,
+                lastname = lastname,
+                email = email,
+                password = password
             )
         }
         viewBinding.termsAndConditionsCheckBox.setClubRulesText {
