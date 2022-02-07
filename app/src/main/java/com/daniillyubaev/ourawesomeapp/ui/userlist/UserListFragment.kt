@@ -39,6 +39,7 @@ class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
         }
         viewBinding.refreshLayout.setOnRefreshListener {
             viewModel.loadUsers()
+            viewBinding.refreshLayout.isRefreshing = false
         }
     }
 

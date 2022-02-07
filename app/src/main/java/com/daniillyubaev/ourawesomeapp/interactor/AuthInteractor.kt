@@ -43,7 +43,7 @@ class AuthInteractor @Inject constructor(
         lastname: String,
         email: String,
         password: String
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    ): NetworkResponse<Unit, CreateProfileErrorResponse> {
         val response = authRepository.createProfile(
             username = username,
             firstname = firstname,
@@ -84,7 +84,7 @@ class AuthInteractor @Inject constructor(
         firstName: String,
         lastName: String,
         password: String
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    ): NetworkResponse<Unit, CreateProfileErrorResponse> {
         val response = authRepository.generateAuthTokensByEmailAndPersonalInfo(
             email = email,
             verificationToken = verificationToken,
@@ -94,7 +94,7 @@ class AuthInteractor @Inject constructor(
         )
         when (response) {
             is NetworkResponse.Success -> {
-                authRepository.saveAuthTokens(response.body)
+                authRepository.saveAuthTokens(null)
             }
             is NetworkResponse.Error -> {
                 Timber.e(response.error)

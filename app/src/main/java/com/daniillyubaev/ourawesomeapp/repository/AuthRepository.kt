@@ -78,7 +78,7 @@ class AuthRepository @Inject constructor(
         firstName: String,
         lastName: String,
         password: String
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    ): NetworkResponse<Unit, CreateProfileErrorResponse> {
         return api.createProfile(
             CreateProfileRequest(
                 verificationToken,
@@ -106,7 +106,7 @@ class AuthRepository @Inject constructor(
         lastname: String,
         email: String,
         password: String
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    ): NetworkResponse<Unit, CreateProfileErrorResponse> {
         return api.createProfile(
             CreateProfileRequest(
                 username = username,

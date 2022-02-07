@@ -61,14 +61,9 @@ class MockApi : Api {
         )
     }
 
-    override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<Unit, CreateProfileErrorResponse> {
         return NetworkResponse.Success(
-            AuthTokens(
-                accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2MzgsImV4cCI6MTY0MDg3MTc3MX0.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI",
-                refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2MzgsImV4cCI6MTY0MDg3MTc3MX0.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI",
-                accessTokenExpiration = 1640871771000,
-                refreshTokenExpiration = 1640871771000,
-            ),
+            Unit,
             code = 200
         )
     }

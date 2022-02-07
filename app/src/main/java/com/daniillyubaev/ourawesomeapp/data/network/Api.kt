@@ -41,7 +41,7 @@ interface Api {
     @POST("registration/create-profile")
     suspend fun createProfile(
         @Body request: CreateProfileRequest
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse>
+    ): NetworkResponse<Unit, CreateProfileErrorResponse>
 
     @POST("posts")
     suspend fun getPosts(): NetworkResponse<List<Post>, Unit>

@@ -72,22 +72,6 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
         subscribeToFormFields()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        val firstname = viewBinding.firstnameEditText.text?.toString() ?: ""
-        val lastname = viewBinding.lastnameEditText.text?.toString() ?: ""
-        val nickname = viewBinding.nicknameEditText.text?.toString() ?: ""
-        val password = viewBinding.passwordEditText.text?.toString() ?: ""
-        val email = viewBinding.emailEditText.text?.toString() ?: ""
-
-        outState.putString("SIGN_UP_FIRSTNAME", firstname)
-        outState.putString("SIGN_UP_LASTNAME", lastname)
-        outState.putString("SIGN_UP_NICKNAME", nickname)
-        outState.putString("SIGN_UP_PASSWORD", password)
-        outState.putString("SIGN_UP_EMAIL", email)
-    }
-
     private fun subscribeToFormFields() {
         decideSignUpButtonEnabledState(
             firstname = viewBinding.firstnameEditText.text?.toString(),
@@ -137,7 +121,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
                 viewModel.signUpActionStateFlow().collect { action ->
                     when (action) {
                         is SignUpViewModel.SignUpActionState.EmailConfirmationRequired -> {
-                            findNavController().navigate(R.id.emailConfirmationFragment)
+                            findNavController().navigate(R.id.signInFragment)
                         }
                         else -> {
                             // Do nothing.
